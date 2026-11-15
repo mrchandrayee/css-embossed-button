@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CSS Embossed Button</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main class="page">
+  <h1>CSS Embossed Button</h1>
+  <section class="showcase">
+    <article class="demo-card">
+      <div class="preview magnetic-scene"><button class="emboss-btn magnetic-btn" id="magneticBtn">Magnetic</button></div>
+      <div class="code-panel"><div class="panel-head">CSS <button class="copy" data-copy="magnetic">Copy CSS</button></div><pre><code>.magnetic-btn {
+  --mx: 50%;
+  --my: 50%;
+  transition: transform .12s ease-out,
+              box-shadow .3s ease;
+}
+.magnetic-btn::before {
+  content: "";
+  position: absolute;
+  width: 170px;
+  height: 170px;
+  left: var(--mx);
+  top: var(--my);
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(
+    circle, rgba(255,255,255,.9),
+    transparent 65%
+  );
+  opacity: 0;
+  transition: opacity .2s ease;
+}
+.magnetic-btn:hover::before { opacity: 1; }</code></pre></div>
+    </article>
+    <article class="demo-card">
+      <div class="preview tilt-scene"><button class="emboss-btn tilt-btn" id="tiltBtn">3D Tilt</button></div>
+      <div class="code-panel"><div class="panel-head">CSS <button class="copy" data-copy="tilt">Copy CSS</button></div><pre><code>.tilt-scene { perspective: 1000px; }
+.tilt-btn {
+  --rx: 0deg;
+  --ry: 0deg;
+  transform-style: preserve-3d;
+  transform: rotateX(var(--rx))
+             rotateY(var(--ry));
+  transition: transform .12s ease-out;
+}
+.tilt-btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle at var(--lx, 50%) var(--ly, 50%),
+    rgba(255,255,255,.9), transparent 70%
+  );
+  opacity: .5;
+}</code></pre></div>
+    </article>
+    <article class="demo-card">
+      <div class="preview"><button class="emboss-btn pulse-btn"><span class="pulse-ring"></span>Pulse</button></div>
+      <div class="code-panel"><div class="panel-head">CSS <button class="copy" data-copy="pulse">Copy CSS</button></div><pre><code>.pulse-btn {
+  animation: breathing 2.5s ease-in-out infinite;
+}
+.pulse-ring,
+.pulse-ring::before,
+.pulse-ring::after {
+  content: "";
+  position: absolute;
+  inset: -5px;
+  border-radius: 24px;
+  border: 2px solid rgba(102,126,234,.4);
+}
+.pulse-ring { animation: pulseRing 2.2s ease-out infinite; }
+@keyframes pulseRing {
+  0% { opacity: .8; transform: scale(.95); }
+  100% { opacity: 0; transform: scale(1.4); }
+}
+@keyframes breathing {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.025); }
+}</code></pre></div>
+    </article>
+    <article class="demo-card">
+      <div class="preview wave-scene"><button class="emboss-btn wave-btn">Shadow Wave</button></div>
+      <div class="code-panel"><div class="panel-head">CSS <button class="copy" data-copy="wave">Copy CSS</button></div><pre><code>.wave-btn {
+  --x: 50%;
+  --y: 50%;
+  transition: transform .3s ease,
+              box-shadow .3s ease;
+}
+.wave-btn::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background: radial-gradient(
+    circle at var(--x) var(--y),
+    rgba(255,255,255,.95),
+    rgba(255,255,255,.4) 12%,
+    transparent 32%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .3s ease;
+}
+.wave-btn:hover::before { opacity: 1; }</code></pre></div>
+    </article>
+    <article class="demo-card">
+      <div class="preview"><button class="emboss-btn bounce-btn" id="bounceBtn">Press Me</button></div>
+      <div class="code-panel"><div class="panel-head">CSS <button class="copy" data-copy="bounce">Copy CSS</button></div><pre><code>.bounce-btn {
+  transition: transform .1s ease,
+              box-shadow .1s ease;
+}
+.bounce-btn:active {
+  box-shadow:
+    inset 8px 8px 16px var(--dark),
+    inset -8px -8px 16px var(--light);
+}
+.bounce-btn.bouncing {
+  animation: springButton .7s
+    cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes springButton {
+  0% { transform: translateY(0) scale(1); }
+  35% { transform: translateY(6px) scale(.94); }
+  65% { transform: translateY(-4px) scale(1.03); }
+  100% { transform: translateY(0) scale(1); }
+}</code></pre></div>
+    </article>
+  </section>
+  <p class="hint">Move your pointer over the buttons, tilt, glow and press to explore each effect.</p>
+</main>
+<script src="script.js"></script>
+</body></html>
